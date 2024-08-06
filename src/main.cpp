@@ -7,13 +7,14 @@
 int main() {
     using namespace ftxui;
     Element document = hbox({
-        text("TODO List"),
-        paragraph("Welcome to your new TODO list app! In the modern age of "
-                  "hyperactive everything with scrolly bars and infinite feeds "
-                  "it's hard to find an app that just does what it says.") |
-            border,
-        text("middle") | border | flex,
-        text("right") | border,
+        window(
+            text("TODO List"),
+            text("Welcome to your new TODO list app! In the modern age of "
+                 "hyperactive everything with scrolly bars and infinite feeds "
+                 "it's hard to find an app that just does what it says.")) |
+            color(Color::Blue),
+        text("Tree") | border | color(Color::Blue),
+        gaugeDown(0.5) | border | color(Color::Blue),
     });
 
     auto screen = Screen::Create(Dimension::Full(), Dimension::Fit(document));
