@@ -6,19 +6,19 @@
 
 int main() {
     using namespace ftxui;
+    Element document = hbox({
+        text("TODO List"),
+        paragraph("Welcome to your new TODO list app! In the modern age of "
+                  "hyperactive everything with scrolly bars and infinite feeds "
+                  "it's hard to find an app that just does what it says.") |
+            border,
+        text("middle") | border | flex,
+        text("right") | border,
+    });
 
-    auto screen = Screen::Create(Dimension::Fixed(32), Dimension::Fixed(16));
-    Element todo = vbox({text("TODO List:") | bold | color(Color::Blue),
-                         gauge(6), text("The end")});
+    auto screen = Screen::Create(Dimension::Full(), Dimension::Fit(document));
 
-    // docs https://arthursonzogni.github.io/FTXUI/
-    // so much documentation
-
-    todo = border(todo);
-    Render(screen, todo);
-    screen.Print();
-
-    /*text("Welcome to your new TODO app :D");*/
+    Render(screen, document);
     screen.Print();
 
     auto& pixel = screen.PixelAt(9, 9);
