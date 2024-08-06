@@ -9,12 +9,21 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/color.hpp>
 #include <ftxui/screen/screen.hpp>
+#include <vector>
 
 int main() {
     using namespace ftxui;
 
     std::string fName;
     std::string lName;
+
+    std::vector<std::string> tabName = {
+        "Basic Info",
+        "TODO List",
+        "Settings",
+    };
+    int selectedTab = 0;
+    auto tabToggler = Toggle(&tabName, &selectedTab);
 
     Component fNameIn = Input(&fName, "First Name:");
     Component lNameIn = Input(&lName, "Last Name");
@@ -31,6 +40,7 @@ int main() {
                        "on man...). This app is supposed to be simple and "
                        "intuitive to use.") |
                        border | flex,
+                   tabToggler->Render(),
                    hbox(text("First Name: "), fNameIn->Render()),
                    hbox(text("Last Name: "), lNameIn->Render()),
                    separator(),
